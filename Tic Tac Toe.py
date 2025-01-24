@@ -112,6 +112,16 @@ def train_agent(episodes=10000):
 def play_against_agent(agent):
     env = TicTacToeEnv()
     state = tuple(env.reset())
+    
+    choice = input("Who should go first? Enter 'me' for yourself or 'agent' for the agent: ").strip().lower()
+    if choice == 'agent':
+        env.current_player = -1  # Agent goes first
+    elif choice == 'me':
+        env.current_player = 1  # Human goes first
+    else:
+        print("Invalid choice. Defaulting to 'agent' going first.")
+        env.current_player = -1  # Default to agent if input is invalid
+
     done = False
 
     while not done:
